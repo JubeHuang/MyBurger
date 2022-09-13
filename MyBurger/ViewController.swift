@@ -46,28 +46,28 @@ class ViewController: UIViewController {
         scrollBreadImage(index: self.index)
         }
     @IBAction func nextVegeBtn(_ sender: Any) {
-        index = (index +  1) % breadLabels.count
+        index = (index +  1) % vegeLabels.count
         vegeLabel.text = vegeLabels[index]
         scrollVegeImage(index: self.index)
     }
     @IBAction func nextTopBtn(_ sender: Any) {
-        index = (index +  1) % breadLabels.count
+        index = (index +  1) % topLabels.count
         topLabel.text = topLabels[index]
         scrollTopImage(index: self.index)
     }
     @IBAction func nextMeatBtn(_ sender: Any) {
-        index = (index +  1) % breadLabels.count
+        index = (index +  1) % meatLabels.count
         meatLabel.text = meatLabels[index]
         scrollMeatImage(index: self.index)
     }
     @IBAction func nextSauceBtn(_ sender: Any) {
-        index = (index +  1) % breadLabels.count
+        index = (index +  1) % sauceLabels.count
         sauceLabel.text = sauceLabels[index]
         scrollSauceImage(index: self.index)
     }
     // preBtn
     @IBAction func preVegeBtn(_ sender: Any) {
-        index = (index + breadLabels.count - 1) % breadLabels.count
+        index = (index + vegeLabels.count - 1) % vegeLabels.count
         vegeLabel.text = vegeLabels[index]
         scrollVegeImage(index: self.index)
     }
@@ -77,17 +77,17 @@ class ViewController: UIViewController {
         scrollBreadImage(index: self.index)
     }
     @IBAction func preTopBtn(_ sender: Any) {
-        index = (index + breadLabels.count - 1) % breadLabels.count
+        index = (index + topLabels.count - 1) % topLabels.count
         topLabel.text = topLabels[index]
         scrollTopImage(index: self.index)
     }
     @IBAction func preSauceBtn(_ sender: Any) {
-        index = (index + breadLabels.count - 1) % breadLabels.count
+        index = (index + sauceLabels.count - 1) % sauceLabels.count
         sauceLabel.text = sauceLabels[index]
         scrollSauceImage(index: self.index)
     }
     @IBAction func preMeatBtn(_ sender: Any) {
-        index = (index + breadLabels.count - 1) % breadLabels.count
+        index = (index + meatLabels.count - 1) % meatLabels.count
         meatLabel.text = meatLabels[index]
         scrollMeatImage(index: self.index)
     }
@@ -113,9 +113,7 @@ class ViewController: UIViewController {
         redSlider.setValue(.random(in: 0...1), animated: true)
         greenSlider.setValue(.random(in: 0...1), animated: true)
         blueSlider.setValue(.random(in: 0...1), animated: true)
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 400)
-        gradientLayer.colors = [CGColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(alphaSlider.value)), CGColor(red: CGFloat(redSlider.value / 2), green: CGFloat(greenSlider.value / 2), blue: CGFloat(blueSlider.value / 2), alpha: CGFloat(alphaSlider.value))]
-        bgView.layer.insertSublayer(gradientLayer, at: 0)
+        makeGradientBg()
     }
     
     //切換segmentedControl
@@ -158,6 +156,7 @@ class ViewController: UIViewController {
             self.sauceContainer.frame.origin.x = CGFloat(-(index * 375))
         }
     }
+    //背景加漸層
     func makeGradientBg(){
         gradientLayer.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 400)
         gradientLayer.colors = [CGColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(alphaSlider.value)), CGColor(red: CGFloat(redSlider.value / 2), green: CGFloat(greenSlider.value / 2), blue: CGFloat(blueSlider.value / 2), alpha: CGFloat(alphaSlider.value))]
