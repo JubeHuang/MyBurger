@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var meatContainer: UIView!
     @IBOutlet weak var vegeContainer: UIView!
     @IBOutlet weak var breadContainer: UIView!
+    @IBOutlet weak var breadMaskView: UIView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var sauceLabel: UILabel!
     @IBOutlet weak var meatLabel: UILabel!
@@ -26,7 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var blueSlider: UISlider!
     @IBOutlet weak var alphaSlider: UISlider!
     
-    let breadLabels = ["普通麵包", "白麵包", "竹炭麵包"]
+    let breadLabels = ["普通麵包", "白麵包", "竹炭麵包", "透明麵包"]
     let vegeLabels = ["番茄", "培根", "醃黃瓜"]
     let topLabels = ["起士", "生菜", "洋蔥"]
     let meatLabels = ["牛肉排", "雞肉排", "太陽蛋"]
@@ -38,6 +39,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         colorAdjustView.isHidden = true
         makeGradientBg()
+        let transparentBreadImageView = UIImageView(image: UIImage(named: "breadC"))
+        transparentBreadImageView.frame = breadMaskView.bounds
+        breadMaskView.mask = transparentBreadImageView
     }
     //  nextBtn
     @IBAction func nextBreatBtn(_ sender: Any) {
@@ -114,6 +118,7 @@ class ViewController: UIViewController {
         greenSlider.setValue(.random(in: 0...1), animated: true)
         blueSlider.setValue(.random(in: 0...1), animated: true)
         makeGradientBg()
+        breadMaskView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(alphaSlider.value))
     }
     
     //切換segmentedControl
@@ -129,6 +134,7 @@ class ViewController: UIViewController {
     //color slider
     @IBAction func changeColorSlider(_ sender: UISlider) {
         makeGradientBg()
+        breadMaskView.backgroundColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(alphaSlider.value))
     }
     //滑動圖片function
     func scrollBreadImage(index: Int){
@@ -159,7 +165,7 @@ class ViewController: UIViewController {
     //背景加漸層
     func makeGradientBg(){
         gradientLayer.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 400)
-        gradientLayer.colors = [CGColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(alphaSlider.value)), CGColor(red: CGFloat(redSlider.value / 2), green: CGFloat(greenSlider.value / 2), blue: CGFloat(blueSlider.value / 2), alpha: CGFloat(alphaSlider.value))]
+        gradientLayer.colors = [CGColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(alphaSlider.value)), CGColor(red: CGFloat(redSlider.value / 3), green: CGFloat(greenSlider.value / 3), blue: CGFloat(blueSlider.value / 3), alpha: CGFloat(alphaSlider.value))]
         bgView.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
