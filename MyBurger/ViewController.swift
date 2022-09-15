@@ -53,14 +53,16 @@ class ViewController: UIViewController {
     let topImageNames = ["topA", "topB", "topC"]
     let meatImageNames = ["meatA", "meatB", "meatC"]
     let sauceImageNames = ["sauceA", "sauceB", "sauceC"]
-    var index = 0
+    // for next and pre btn 的 index
+//    var index = 0
     class IngredientIndex{
         var breadIndex = 0
         var vegeIndex = 0
         var topIndex = 0
         var meatIndex = 0
-        var sauce = 0
+        var sauceIndex = 0
     }
+    let ingredientIndex = IngredientIndex()
     let gradientLayer = CAGradientLayer()
     
     override func viewDidLoad() {
@@ -73,73 +75,73 @@ class ViewController: UIViewController {
     }
     //  nextBtn
     @IBAction func nextBreatBtn(_ sender: Any) {
-        index = (index +  1) % breadLabels.count
-        breadLabel.text = breadLabels[index]
-        scrollNextImage(index: index, arraySum: breadImageName.count, imageNames: breadImageName, preImageView: preBreadImage, currentImageView: currentBreadImage, nextImageView: nextBreadImage, container: breadContainer)
+        ingredientIndex.breadIndex = (ingredientIndex.breadIndex +  1) % breadLabels.count
+        breadLabel.text = breadLabels[ingredientIndex.breadIndex]
+        scrollNextImage(index: ingredientIndex.breadIndex, arraySum: breadImageName.count, imageNames: breadImageName, preImageView: preBreadImage, currentImageView: currentBreadImage, nextImageView: nextBreadImage, container: breadContainer)
         }
     @IBAction func nextVegeBtn(_ sender: Any) {
-        index = (index +  1) % vegeLabels.count
-        vegeLabel.text = vegeLabels[index]
-        scrollNextImage(index: index, arraySum: vegeImageNames.count, imageNames: vegeImageNames, preImageView: preVegeImage, currentImageView: currentVegeImage, nextImageView: nextVegeImage, container: vegeContainer)
+        ingredientIndex.vegeIndex = (ingredientIndex.vegeIndex +  1) % vegeLabels.count
+        vegeLabel.text = vegeLabels[ingredientIndex.vegeIndex]
+        scrollNextImage(index: ingredientIndex.vegeIndex, arraySum: vegeImageNames.count, imageNames: vegeImageNames, preImageView: preVegeImage, currentImageView: currentVegeImage, nextImageView: nextVegeImage, container: vegeContainer)
     }
     @IBAction func nextTopBtn(_ sender: Any) {
-        index = (index +  1) % topLabels.count
-        topLabel.text = topLabels[index]
-        scrollNextImage(index: index, arraySum: topImageNames.count, imageNames: topImageNames, preImageView: preTopImage, currentImageView: currentTopImage, nextImageView: nextTopImage, container: topContainer)
+        ingredientIndex.topIndex = (ingredientIndex.topIndex + 1) % topLabels.count
+        topLabel.text = topLabels[ingredientIndex.topIndex]
+        scrollNextImage(index: ingredientIndex.topIndex, arraySum: topImageNames.count, imageNames: topImageNames, preImageView: preTopImage, currentImageView: currentTopImage, nextImageView: nextTopImage, container: topContainer)
     }
     @IBAction func nextMeatBtn(_ sender: Any) {
-        index = (index +  1) % meatLabels.count
-        meatLabel.text = meatLabels[index]
-        scrollNextImage(index: index, arraySum: meatImageNames.count, imageNames: meatImageNames, preImageView: preMeatImage, currentImageView: currentMeatImage, nextImageView: nextMeatImage, container: meatContainer)
+        ingredientIndex.meatIndex = (ingredientIndex.meatIndex + 1) % meatLabels.count
+        meatLabel.text = meatLabels[ingredientIndex.meatIndex]
+        scrollNextImage(index: ingredientIndex.meatIndex, arraySum: meatImageNames.count, imageNames: meatImageNames, preImageView: preMeatImage, currentImageView: currentMeatImage, nextImageView: nextMeatImage, container: meatContainer)
     }
     @IBAction func nextSauceBtn(_ sender: Any) {
-        index = (index +  1) % sauceLabels.count
-        sauceLabel.text = sauceLabels[index]
-        scrollNextImage(index: index, arraySum: sauceImageNames.count, imageNames: sauceImageNames, preImageView: preSauceImage, currentImageView: currentSauceImage, nextImageView: nextSauceImage, container: sauceContainer)
+        ingredientIndex.sauceIndex = (ingredientIndex.sauceIndex +  1) % sauceLabels.count
+        sauceLabel.text = sauceLabels[ingredientIndex.sauceIndex]
+        scrollNextImage(index: ingredientIndex.sauceIndex, arraySum: sauceImageNames.count, imageNames: sauceImageNames, preImageView: preSauceImage, currentImageView: currentSauceImage, nextImageView: nextSauceImage, container: sauceContainer)
     }
     // preBtn
     @IBAction func preVegeBtn(_ sender: Any) {
-        index = (index + vegeLabels.count - 1) % vegeLabels.count
-        vegeLabel.text = vegeLabels[index]
-        scrollPreImage(index: index, arraySum: vegeImageNames.count, imageNames: vegeImageNames, preImageView: preVegeImage, currentImageView: currentVegeImage, nextImageView: nextVegeImage, container: vegeContainer)
+        ingredientIndex.vegeIndex = (ingredientIndex.vegeIndex + vegeLabels.count - 1) % vegeLabels.count
+        vegeLabel.text = vegeLabels[ingredientIndex.vegeIndex]
+        scrollPreImage(index: ingredientIndex.vegeIndex, arraySum: vegeImageNames.count, imageNames: vegeImageNames, preImageView: preVegeImage, currentImageView: currentVegeImage, nextImageView: nextVegeImage, container: vegeContainer)
     }
     @IBAction func preBreadBtn(_ sender: Any) {
-        index = (index + breadLabels.count - 1) % breadLabels.count
-        breadLabel.text = breadLabels[index]
-        scrollPreImage(index: index, arraySum: breadImageName.count, imageNames: breadImageName, preImageView: preBreadImage, currentImageView: currentBreadImage, nextImageView: nextBreadImage, container: breadContainer)
+        ingredientIndex.breadIndex = (ingredientIndex.breadIndex + breadLabels.count - 1) % breadLabels.count
+        breadLabel.text = breadLabels[ingredientIndex.breadIndex]
+        scrollPreImage(index: ingredientIndex.breadIndex, arraySum: breadImageName.count, imageNames: breadImageName, preImageView: preBreadImage, currentImageView: currentBreadImage, nextImageView: nextBreadImage, container: breadContainer)
     }
     @IBAction func preTopBtn(_ sender: Any) {
-        index = (index + topLabels.count - 1) % topLabels.count
-        topLabel.text = topLabels[index]
-        scrollPreImage(index: index, arraySum: topImageNames.count, imageNames: topImageNames, preImageView: preTopImage, currentImageView: currentTopImage, nextImageView: nextTopImage, container: topContainer)
+        ingredientIndex.topIndex = (ingredientIndex.topIndex + topLabels.count - 1) % topLabels.count
+        topLabel.text = topLabels[ingredientIndex.topIndex]
+        scrollPreImage(index: ingredientIndex.topIndex, arraySum: topImageNames.count, imageNames: topImageNames, preImageView: preTopImage, currentImageView: currentTopImage, nextImageView: nextTopImage, container: topContainer)
     }
     @IBAction func preSauceBtn(_ sender: Any) {
-        index = (index + sauceLabels.count - 1) % sauceLabels.count
-        sauceLabel.text = sauceLabels[index]
-        scrollPreImage(index: index, arraySum: sauceImageNames.count, imageNames: sauceImageNames, preImageView: preSauceImage, currentImageView: currentSauceImage, nextImageView: nextSauceImage, container: sauceContainer)
+        ingredientIndex.sauceIndex = (ingredientIndex.sauceIndex + sauceLabels.count - 1) % sauceLabels.count
+        sauceLabel.text = sauceLabels[ingredientIndex.sauceIndex]
+        scrollPreImage(index: ingredientIndex.sauceIndex, arraySum: sauceImageNames.count, imageNames: sauceImageNames, preImageView: preSauceImage, currentImageView: currentSauceImage, nextImageView: nextSauceImage, container: sauceContainer)
     }
     @IBAction func preMeatBtn(_ sender: Any) {
-        index = (index + meatLabels.count - 1) % meatLabels.count
-        meatLabel.text = meatLabels[index]
-        scrollPreImage(index: index, arraySum: meatImageNames.count, imageNames: meatImageNames, preImageView: preMeatImage, currentImageView: currentMeatImage, nextImageView: nextMeatImage, container: meatContainer)
+        ingredientIndex.meatIndex = (ingredientIndex.meatIndex + meatLabels.count - 1) % meatLabels.count
+        meatLabel.text = meatLabels[ingredientIndex.meatIndex]
+        scrollPreImage(index: ingredientIndex.meatIndex, arraySum: meatImageNames.count, imageNames: meatImageNames, preImageView: preMeatImage, currentImageView: currentMeatImage, nextImageView: nextMeatImage, container: meatContainer)
     }
     //亂數按鈕
     @IBAction func randomBtn(_ sender: Any) {
-        let breadRandomNum = Int.random(in: 0...2)
-        let vegeRandomNum = Int.random(in: 0...2)
-        let topRandomNum = Int.random(in: 0...2)
-        let meatRandomNum = Int.random(in: 0...2)
-        let sauceRandomNum = Int.random(in: 0...2)
-        breadLabel.text = breadLabels[breadRandomNum]
-        scrollNextImage(index: breadRandomNum, arraySum: breadImageName.count, imageNames: breadImageName, preImageView: preBreadImage, currentImageView: currentBreadImage, nextImageView: nextBreadImage, container: breadContainer)
-        vegeLabel.text = vegeLabels[vegeRandomNum]
-        scrollPreImage(index: vegeRandomNum, arraySum: vegeImageNames.count, imageNames: vegeImageNames, preImageView: preVegeImage, currentImageView: currentVegeImage, nextImageView: nextVegeImage, container: vegeContainer)
-        topLabel.text = topLabels[topRandomNum]
-        scrollNextImage(index: topRandomNum, arraySum: topImageNames.count, imageNames: topImageNames, preImageView: preTopImage, currentImageView: currentTopImage, nextImageView: nextTopImage, container: topContainer)
-        meatLabel.text = meatLabels[meatRandomNum]
-        scrollPreImage(index: meatRandomNum, arraySum: meatImageNames.count, imageNames: meatImageNames, preImageView: preMeatImage, currentImageView: currentMeatImage, nextImageView: nextMeatImage, container: meatContainer)
-        sauceLabel.text = sauceLabels[sauceRandomNum]
-        scrollNextImage(index: sauceRandomNum, arraySum: sauceImageNames.count, imageNames: sauceImageNames, preImageView: preSauceImage, currentImageView: currentSauceImage, nextImageView: nextSauceImage, container: sauceContainer)
+        ingredientIndex.topIndex = Int.random(in: 0...2)
+        ingredientIndex.meatIndex = Int.random(in: 0...2)
+        ingredientIndex.sauceIndex = Int.random(in: 0...2)
+        ingredientIndex.breadIndex = Int.random(in: 0...2)
+        ingredientIndex.vegeIndex = Int.random(in: 0...2)
+        breadLabel.text = breadLabels[ingredientIndex.breadIndex]
+        scrollNextImage(index: ingredientIndex.breadIndex, arraySum: breadImageName.count, imageNames: breadImageName, preImageView: preBreadImage, currentImageView: currentBreadImage, nextImageView: nextBreadImage, container: breadContainer)
+        vegeLabel.text = vegeLabels[ingredientIndex.vegeIndex]
+        scrollPreImage(index: ingredientIndex.vegeIndex, arraySum: vegeImageNames.count, imageNames: vegeImageNames, preImageView: preVegeImage, currentImageView: currentVegeImage, nextImageView: nextVegeImage, container: vegeContainer)
+        topLabel.text = topLabels[ingredientIndex.topIndex]
+        scrollNextImage(index: ingredientIndex.topIndex, arraySum: topImageNames.count, imageNames: topImageNames, preImageView: preTopImage, currentImageView: currentTopImage, nextImageView: nextTopImage, container: topContainer)
+        meatLabel.text = meatLabels[ingredientIndex.meatIndex]
+        scrollPreImage(index: ingredientIndex.meatIndex, arraySum: meatImageNames.count, imageNames: meatImageNames, preImageView: preMeatImage, currentImageView: currentMeatImage, nextImageView: nextMeatImage, container: meatContainer)
+        sauceLabel.text = sauceLabels[ingredientIndex.sauceIndex]
+        scrollNextImage(index: ingredientIndex.sauceIndex, arraySum: sauceImageNames.count, imageNames: sauceImageNames, preImageView: preSauceImage, currentImageView: currentSauceImage, nextImageView: nextSauceImage, container: sauceContainer)
     }
     @IBAction func randomColor(_ sender: Any) {
         redSlider.setValue(.random(in: 0...1), animated: true)
