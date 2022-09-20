@@ -53,8 +53,7 @@ class ViewController: UIViewController {
     let topImageNames = ["topA", "topB", "topC"]
     let meatImageNames = ["meatA", "meatB", "meatC"]
     let sauceImageNames = ["sauceA", "sauceB", "sauceC"]
-    // for next and pre btn 的 index
-//    var index = 0
+
     class IngredientIndex{
         var breadIndex = 0
         var vegeIndex = 0
@@ -193,31 +192,6 @@ class ViewController: UIViewController {
         }
     }
     
-//    func scrollBreadImage(index: Int){
-//        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.1, options: .curveEaseIn) {
-//            self.breadContainer.frame.origin.x = CGFloat(-(index * 375))
-//        }
-//    }
-//    func scrollTopImage(index: Int){
-//        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.1, options: .curveEaseIn) {
-//            self.topContainer.frame.origin.x = CGFloat(-(index * 375))
-//        }
-//    }
-//    func scrollMeatImage(index: Int){
-//        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.1, options: .curveEaseIn) {
-//            self.meatContainer.frame.origin.x = CGFloat(-(index * 375))
-//        }
-//    }
-//    func scrollVegeImage(index: Int){
-//        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.1, options: .curveEaseIn) {
-//            self.vegeContainer.frame.origin.x = CGFloat(-(index * 375))
-//        }
-//    }
-//    func scrollSauceImage(index: Int){
-//        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0.1, options: .curveEaseIn) {
-//            self.sauceContainer.frame.origin.x = CGFloat(-(index * 375))
-//        }
-//    }
     //背景加漸層
     func makeGradientBg(){
         gradientLayer.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 400)
